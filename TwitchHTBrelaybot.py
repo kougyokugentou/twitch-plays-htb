@@ -4,8 +4,7 @@ import subprocess
 # Twitch IRC configuration
 server = "irc.chat.twitch.tv"
 port = 6667
-nickname = "HTBRelayBot"
-token = "oauth:"  # Replace with your Twitch OAuth token
+nickname = "justinfan123"
 channel = "#kougyoku_gentou"  # Replace with your Twitch channel name
 
 # List of privileged users
@@ -20,7 +19,6 @@ def connect_to_twitch():
     irc.connect((server, port))
 
     # Send authentication information
-    irc.send(f"PASS {token}\r\n".encode("utf-8"))
     irc.send(f"NICK {nickname}\r\n".encode("utf-8"))
     irc.send(f"JOIN {channel}\r\n".encode("utf-8"))
 
