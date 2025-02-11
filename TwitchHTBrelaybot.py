@@ -82,10 +82,14 @@ def execute_in_shell(command, username, newline=True):
 
     # Block "kill" commands
     command_words = command.lower().strip().split(" ")
-    can_kill = "kill" in command_words or "pkill" in command_words
-    targets_bot = str(bot_pid) in command_words or bot_pname in command_words
+    can_kill = command.find("kill") != -1 or command.find("pkill") != -1
+    targets_bot = str(bot_pid) in command_words \
+        or bot_pname in command_words \
+        or str(1) in command_words\
+        or command.find(__file__) != -1
+    bad_words = command.find("reboot") != -1
     #if command.strip().lower().startswith("kill") and str(bot_pid) in command:
-    if can_kill and targets_bot:
+    if bad_words or (can_kill and targets_bot):
         print(f"[{channel}] {username} attempted to use a 'kill' command.")
         print("Please do not try to kill the bot, thank you.")
         return
