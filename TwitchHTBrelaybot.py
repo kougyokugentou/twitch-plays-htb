@@ -147,8 +147,9 @@ def relay_chat(irc):
                         print(f"Reseting Shell")
                         reset_shell()
                     else:
-                        if relay_active and message.startswith("!cmd"):
-                            execute_in_shell(message[5:], username)
+                        pass
+                        #if relay_active and message.startswith("!cmd"):
+                        #    execute_in_shell(message[5:], username)
 
                 # Relay non-privileged messages if active
 
@@ -156,7 +157,7 @@ def relay_chat(irc):
                     print(f"[{channel}] {username}: {message}")
                     execute_in_shell(*args, **kwargs)
                 
-                if relay_active and username not in privileged_users:
+                if relay_active:
                     message_words = message.split(" ")
                     first_word = message_words[0]
                     action = " ".join(message_words[1:])
